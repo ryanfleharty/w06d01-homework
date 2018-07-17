@@ -25,6 +25,20 @@ router.post('/', (req, res) => {
 	});
 });
 
+router.get('/:id', (req, res) => {
+	Users.findById(req.params.id, (err, foundUser) => {
+		res.render('users/show.ejs', {
+			user: foundUser
+		});
+	});
+});
 
+
+router.delete('/:id', (req, res) => {
+	Users.findByIdAndRemove(req.params.id, (err, deletedUser) => {
+		console.log(deletedUser, ' this is deletedUser');
+		res.redirect('/users');
+	});
+});
 
 module.exports = router;

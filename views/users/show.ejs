@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<header>
+		<h1><%= user.username %></h1>
+		<nav>
+			<button><a href="/">Home</a></button>
+			<button><a href="/users">Back to User Index</a></button>
+		</nav>
+	</header>
+
+	<main>
+		//Photos will go here, eventually
+	</main>
+
+	<section>
+		<button><a href="/user/<%= user.id %>/edit">Edit My Info</a></button>
+		<form method="POST" action="/users/<%= user.id %>?_method=DELETE">
+			<input type="submit" value="Delete My Info">
+		</form>
+	</section>
+
+</body>
+</html>
