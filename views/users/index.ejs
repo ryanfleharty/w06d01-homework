@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<header>
+		<h1>Meet the Talented Photographers</h1>
+		<button><a href="/">Home</a></button>
+		<button><a href="/users/new">Add Your Info!</a></button>
+	</header>
+
+	<section>
+		<ul>
+			<% for(let i = 0; i < users.length; i++) { %>
+				<li><%= users[i].name %></li>
+			<% } %>
+		</ul>
+	</section>
+
+
+
+</body>
+</html>
