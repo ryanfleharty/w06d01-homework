@@ -18,7 +18,12 @@ router.get('/new', (req, res) => {
 	res.render('users/new.ejs');
 });
 
-
+router.post('/', (req, res) => {
+	Users.create(req.body, (err, createdUser) => {
+		console.log(createdUser, ' this is the createdUser');
+		res.redirect('/users');
+	});
+});
 
 
 
