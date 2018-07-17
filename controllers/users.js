@@ -33,6 +33,20 @@ router.get('/:id', (req, res) => {
 	});
 });
 
+router.get('/:id/edit', (req, res) => {
+	Users.findById(req.params.id, (err, foundUser) => {
+		res.render('users/edit.ejs', {
+			user: foundUser
+		});
+	});
+});
+
+router.put('/:id', (req, res) => {
+	Users.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, foundUser) => {
+		res.redirect('/users');
+	});
+});
+
 
 router.delete('/:id', (req, res) => {
 	Users.findByIdAndRemove(req.params.id, (err, deletedUser) => {

@@ -17,7 +17,7 @@
 	</main>
 
 	<section>
-		<button><a href="/user/<%= user.id %>/edit">Edit My Info</a></button>
+		<button><a href="/users/<%= user.id %>/edit">Edit My Info</a></button>
 		<form method="POST" action="/users/<%= user.id %>?_method=DELETE">
 			<input type="submit" value="Delete My Info">
 		</form>

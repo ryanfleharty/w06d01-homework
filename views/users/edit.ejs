@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<header>
+		<h1>Edit your info</h1>
+		<button><a href="/">Home</a></button>
+	</header>
+
+	<main>
+		<h2><%= user.username %>'s Info</h2>
+
+		<form method="POST" action="/users/<%= user. id %>?_method=PUT">
+			<input type="text" name="username" value="<%= user.username %>"><br>
+			<input type="text" name="password"><br>
+			<input type="submit" value="Update My Info">
+		</form>
+
+		<form method="POST" action="/users/<%= user.id %>?_method=DELETE">
+			<input type="submit" value="Delete My Info">
+		</form>
+	</main>
+
+</body>
+</html>
