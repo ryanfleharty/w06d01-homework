@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Edit <%=user.name %></h1>
+	<header></header>
+		<nav>
+			<ul>
+				<li><a href="Home"></a></li>
+				<li><a href="/users">Users Index</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<h2>Update User</h2>
+		<form action="/users/<%=user.id%>?_method=PUT" method="POST">
+			<input type="text" name="name" value="<%=user.name%>"><br/>
+			<input type="text" name="password" value="<%=user.password%>">
+			<button type="submit">Change</button>
+		</form>
+	</main>
+</body>
+</html>
