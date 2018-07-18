@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Photos= require('../models/photos');
+const Photos = require('../models/photos');
 
 // //////Index Route//////
 router.get('/', (req, res) =>{
@@ -29,6 +29,14 @@ router.post('/', (req, res) => {
 });
 
 // //////Show Route//////
+router.get('/:id', (req, res) => {
+	Photos.findById(req.params.id, (err, foundPhoto) => {
+		res.render('photos/show.ejs', {
+			photo: foundPhoto
+		});
+	});
+});
+
 // //////Edit Route//////
 // //////Update Route//////
 // //////Destroy Route//////

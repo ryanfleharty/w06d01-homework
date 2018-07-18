@@ -10,7 +10,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<% for (let i = 0; i < photos.length; i++) { %>
-			<li><img src="<%= photos[i].img%>"></li>
+			<li><a href="/photos/<%= photos[i].id %>"><img src="<%= photos[i].img%>"></a></li>
 			<% } %>
 		</div>
 	</div>
