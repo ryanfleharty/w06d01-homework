@@ -9,16 +9,22 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			<button><a href="/photos/new">Create a New Post!</a></button>
+			<a class="btn btn-primary" href="/photos/new" role="button">Create a New Post!</a>
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col-xs-12">
-			<% for (let i = 0; i < photos.length; i++) { %>
-			<li><a href="/photos/<%= photos[i]._id %>"><img src="<%= photos[i].img%>"></a></li>
-			<% } %>
+			<div class="card" style="width: 18rem;">
+				<% for (let i = 0; i < photos.length; i++) { %>
+  			<img class="card-img-top" src="<%= photos[i].img%>" alt="Card image cap">
+  			<div class="card-body">
+    			<p class="card-text"><%= photos[i].about %></p>
+    			<a href="/photos/<%= photos[i]._id %>" class="btn btn-primary">More Info</a>
+  			</div>
+  			<% } %>
+			</div>
 		</div>
 	</div>
-</div>	
 
 <% include ../partials/_footer %>
