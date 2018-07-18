@@ -3,11 +3,11 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const app = express();
 const port = 3000;
-
 require('./db/db');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
+app.use(express.static('public'));
 
 const usersControler = require('./controllers/users');
 const photosControler = require('./controllers/photos');

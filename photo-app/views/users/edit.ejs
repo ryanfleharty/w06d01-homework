@@ -15,10 +15,10 @@
       </ul>
     </nav>
     <main>
-      <h1> Edit <%= user.userName %> </h1>
+      <h1> Reset Password <%= user.userName %> </h1>
       <h2> User Data </h2>
       <form action="/users/<%=user.id%>?_method=PUT" method="POST">
-        <input type="text" name="Username" value="<%=user.userName%>" <br>
+        <input type="text" name="Username" value="<%=user.password%>" <br>
         <button type="submit"> Update Author </button>
       </form>
     </main>

@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
+<% include ../partials/_head %>
+
 	<body>
-		<header>
-			<h1>Create an Photos</h1>
-			<nav>
-				<ul>
-					<li>
-						<a href="/">Home</a>
-					</li>
-					<li>
-						<a href="/photos">Photos Index</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-		<main>
-			<form action="/photos" method="post">
-				<input type="text" name="title"/><br/>
-				<input type="text" name="url"/><br/>
-				<input type="submit" value="Post Photo"/>
-			</form>
-		</main>
+		<div class="container">
+			<% include ../partials/_navbar %>
+				<div class="row">
+					<div class="col-sm">
+					</div>
+					<div class="col-sm">
+						<main>
+							<h1>Create an Photos</h1>
+
+							<form action="/photos" method="POST">
+								<input type="text" name="title" />
+								<br/>
+								<input type="text" name="url" />
+								<br/>
+								<select name="userId">
+									<% for (let i = 0; i < users.length; i++){ %>
+										<option value="<%=users[i]._id%>">
+											<%= users[i].userName %>
+										</option>
+										<% } %>
+								</select>
+								<br/>
+								<input type="submit" value="Post Photo" />
+							</form>
+						</main>
+					</div>
+					<div class="col-sm">
+					</div>
+				</div>
+				<% include ../partials/_js_bs %>
 	</body>
+
 </html>

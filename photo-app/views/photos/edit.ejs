@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
+<% include ../partials/_head %>
+
 	<body>
-		<header>
-			<h1>Photo - Edit</h1>
-			<nav>
-				<ul>
-					<li>
-						<a href="/">Home</a>
-					</li>
-					<li>
-						<a href="/photos">Photo Index</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-		<main>
-			<h2>Photo Data:</h2>
-			<form action="/photos/<%=photo.id%>?_method=PUT" method="POST">
-				<input type="text" name="title" value="<%=photo.title%>"/><br/>
-				<input type="text" name="url" value="<%=photo.url%>"></textarea><br/>
-				<input type="submit" value="Update Photo"/>
-			</form>
-		</main>
+		<div class="container">
+			<% include ../partials/_navbar %>
+				<div class="row">
+					<div class="col-sm">
+					</div>
+					<div class="col-sm">
+						<main>
+							<h1>Photo - edit</h1>
+
+							<form action="/photos/<%=photo.id%>?_method=PUT" method="POST">
+								<input type="text" name="title" value="<%=photo.title%>"/> 
+								<input type="text" name="url" value="<%=photo.url%>"/>
+								<select name="userId">
+									<% for (let i = 0; i < users.length; i++){ %>
+											<option value="<%= users[i]._id %>" 
+												<% if(users[i]._id.toString() === photoUser._id.toString() ) { %>
+													selected
+												<% } %> >
+													<%= users[i].userName %>
+											</option>
+									<% } %>
+								</select>
+								<br/>
+								<input type="submit" value="Update Photo" />
+							</form>
+
+
+						</main>
+					</div>
+					<div class="col-sm">
+					</div>
+				</div>
+				<% include ../partials/_js_bs %>
 	</body>
+
 </html>
