@@ -18,14 +18,11 @@ router.get('/', (req, res) =>{
 
 // //////New Route//////
 router.get('/new', (req, res) => {
-	res.render('photos/new.ejs');
-});
-
-// //////Create Route//////
-router.post('/', (req, res) => {
-	Photos.create(req.body, (err, createdPhoto) => {
-		console.log(createdPhoto, ' this is the createdPhoto');
-		res.redirect('/photos');
+	// Find all users so we can select them in the drop-down menu
+	Users.find({}, (err, allUsers) => {
+		res.render('photos/new.ejs', {
+			users: allUsers
+		});
 	});
 });
 
@@ -54,6 +51,20 @@ router.put('/:id', (req, res) => {
 	});
 });
 
+// //////Create Route//////
+router.post('/', (req, res) => {
+	// Create a new photo, push a copy into the User's photos array
+	Users.findById(req.body.user, (err, foundUser) => {
+		// foundUser is the document, with user's photos array
+		Photos.create(req.body, (err, createdPhoto) => {
+			foundUser.photos.push(createdPhoto);
+			foundUser.save((err, data) => {
+				res.redirect('/photos');
+			});
+		});
+	});
+});
+
 // //////Destroy Route//////
 router.delete('/:id', (req, res) => {
 	Photos.findByIdAndRemove(req.params.id, (err, deletedPhoto) => {
@@ -63,3 +74,5 @@ router.delete('/:id', (req, res) => {
 });
 
 module.exports = router;
+
+
