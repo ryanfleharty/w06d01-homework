@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../models/users');
+const Photos = require('../models/photos');
 
 // //////Index Route//////
 router.get('/', (req, res) => {
@@ -56,8 +57,19 @@ router.put('/:id', (req, res) => {
 // //////Destroy Route//////
 router.delete('/:id', (req, res) => {
 	Users.findByIdAndRemove(req.params.id, (err, deletedUser) => {
-		console.log(deletedUser, ' this is deletedUser');
-		res.redirect('/users');
+		console.log(deletedUser, ' this is deletedUser at USERS DESTROY route');
+		// Collect all of the photo ids from the deleted User
+		// photos property
+		const photoIds = [];
+		for (let i = 0; i < deletedUser.photos.length; i++) {
+			photoIds.push(deletedUser.photos[i].id);
+		}
+
+		Photos.remove({
+			_id: { $in: photoIds }
+		}, (err, data) => {
+			res.redirect('/users');
+		});
 	});
 });
 
