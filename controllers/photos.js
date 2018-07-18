@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Photos = require('../models/photos');
+const Users = require('../models/users');
 
 // //////Index Route//////
 router.get('/', (req, res) =>{
