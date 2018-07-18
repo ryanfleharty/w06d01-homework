@@ -4,12 +4,13 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<h1>Photo Drop</h1>
-			<h2>A place for photographers and enthusiasts to share and colab</h2>
+			<h2>A place for photographers and enthusiasts to share and colaborate</h2>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
 			<% for (let i = 0; i < photos.length; i++) { %>
+			<li><img src="<%= photos[i].img%>"></li>
 			<% } %>
 		</div>
 	</div>
