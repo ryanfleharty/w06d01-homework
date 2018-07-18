@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/_head %>
+
+	<body>
+		<div class="container">
+			<% include ../partials/_navbar %>
+				<div class="row">
+					<div class="col-sm">
+					</div>
+					<div class="col-sm">
+						<main>
+							<h2>Gallery - Photo Details</h2>
+								<div class="card justify-content-center" style="width: 18rem;">
+									<img class="card-img-top" src="<%= photo.url %>" alt="Card image cap">
+									<div class="card-body justify-content-center">
+										<h5 class="card-title">	<small>Title: </small><%= photo.title %>	</h5>
+										<h5 class="card-title">	<small>Photographer: </small><%= user.userName %>	</h5>
+									</div>
+									<a href="/photos/<%= photo.id %>/edit"><button>Edit</button></a>
+									<form action="/photos/<%=photo.id%>?_method=DELETE" method="POST">
+										<input type="submit" value="Delete Photo" />
+									</form>
+								</div>
+						</main>
+					</div>
+					<div class="col-sm">
+					</div>
+				</div>
+				<% include ../partials/_js_bs %>
+	</body>
+
+</html>

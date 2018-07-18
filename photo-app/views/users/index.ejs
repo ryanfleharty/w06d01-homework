@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/_head %>
+<body>
+  <div class="container">
+    <% include ../partials/_navbar %>
+    <div class="row">
+      <div class="col-sm">
+      </div>
+      <div class="col-sm">  
+        <main>
+          <h2> List of Users </h2>
+          <div class="list-group">
+            <% for (let i = 0; i < users.length; i++) { %>
+              <a href="/users/<%= users[i].id %>" class="list-group-item list-group-item-action"><%=users[i].userName %></a>
+              <!-- <a href="/users/<%= users[i].id %>" class="list-group-item list-group-item-action"><%=users[i].photos %></a> -->
+            <% } %>
+          </div>
+        </main>
+      </div>
+      <div class="col-sm">
+      </div>
+    </div>
+  <% include ../partials/_js_bs %>
+</body>
+</html>

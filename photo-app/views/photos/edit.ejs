@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<div>
+	<!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- bootstrap bundle -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+	 crossorigin="anonymous"></script>
+</div>
+
+	<body>
+		<div class="container">
+			<% include ../partials/_navbar %>
+				<div class="row">
+					<div class="col-sm">
+					</div>
+					<div class="col-sm">
+						<main>
+							<h1>Photo - edit</h1>
+							
+
+							<form action="/photos/<%=photo.id%>?_method=PUT" method="POST">
+								<div class="card justify-content-center" style="width: 18rem;">
+									<img class="card-img-top" src="<%= photo.url %>" alt="Card image cap">
+									<small>Title: </small><input type="text" name="title" value="<%=photo.title%>"/> 
+									<small>URL: </small><input type="text" name="url" value="<%=photo.url%>"/>
+									<small>Photographer: </small><select name="userId">
+										<% for (let i = 0; i < users.length; i++){ %>
+												<option value="<%= users[i]._id %>" 
+													<% if(users[i]._id.toString() === photoUser._id.toString() ) { %>
+														selected
+													<% } %> >
+														<%= users[i].userName %>
+												</option>
+										<% } %>
+									</select>
+									<br/>
+									<input type="submit" value="Update Photo" />
+								</div>
+							</form>
+
+
+
+						</main>
+					</div>
+					<div class="col-sm">
+					</div>
+				</div>
+				<% include ../partials/_js_bs %>
+	</body>
+
+</html>
