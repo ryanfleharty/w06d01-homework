@@ -38,7 +38,21 @@ router.get('/:id', (req, res) => {
 });
 
 // //////Edit Route//////
+router.get('/:id/edit', (req, res) => {
+	Photos.findById(req.params.id, (err, foundPhoto) => {
+		res.render('photos/edit.ejs', {
+			photo:foundPhoto
+		});
+	});
+});
+
 // //////Update Route//////
+router.put('/:id', (req, res) => {
+	Photos.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPhoto) => {
+		res.redirect('/photos');
+	});
+});
+
 // //////Destroy Route//////
 
 
