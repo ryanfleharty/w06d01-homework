@@ -7,9 +7,8 @@ router.get('/', (req, res) => {
   Users.find({}, (err, foundUsers) => {
       res.render('users/index.ejs', {
         users: foundUsers
-      });
+     });
   });
-
 });
 
 router.get('/new', (req, res) => {
@@ -42,10 +41,17 @@ router.put('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  console.log(req.body)
+  
   	Users.create(req.body, (err, createdUsers) => {
+  		if(err){
+  			console.log(err)
+  		} else {
+  			console.log("Everythings peachy king!")
+  		}
+  		console.log(req.body)
     	console.log(createdUsers, ' this is the created user');
     		res.redirect('/users');
+
   });
 });
 
