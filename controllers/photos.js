@@ -3,7 +3,7 @@ const router = express.Router();
 const Photos = require('../models/photos');
 const Users = require('../models/users');
 
-// //////Index Route//////
+// //////Index Route////// done
 router.get('/', (req, res) =>{
 	Photos.find({}, (err, foundPhotos) => {
 		if (err) {
@@ -16,7 +16,7 @@ router.get('/', (req, res) =>{
 	});
 });;
 
-// //////New Route//////
+// //////New Route////// done
 router.get('/new', (req, res) => {
 	// Find all users so we can select them in the drop-down menu
 	Users.find({}, (err, allUsers) => {
@@ -26,7 +26,7 @@ router.get('/new', (req, res) => {
 	});
 });
 
-// //////Show Route//////
+// //////Show Route////// done
 // show the individual photo, list User name, show description
 router.get('/:id', (req, res) => {
 	Photos.findById(req.params.id, (err, foundPhoto) => {
@@ -40,23 +40,24 @@ router.get('/:id', (req, res) => {
 	});
 });
 
-// //////Edit Route//////
+// //////Edit Route////// done
 router.get('/:id/edit', (req, res) => {
 	Photos.findById(req.params.id, (err, foundPhoto) => {
-		res.render('photos/edit.ejs', {
-			photo:foundPhoto
+		// Find all the users so we can select them in the drop down
+		Users.find({}, (err, allUsers) => {
+			// Now find the user the photo is by
+			Users.findOne({'photos._id': req.params.id}, (err, foundPhotoUser) => {
+				res.render('photos/edit.ejs', {
+					photo: foundPhoto,
+					users: allUsers,
+					photoUser: foundPhotoUser
+				});
+			});
 		});
 	});
 });
 
-// //////Update Route//////
-router.put('/:id', (req, res) => {
-	Photos.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPhoto) => {
-		res.redirect('/photos');
-	});
-});
-
-// //////Create Route//////
+// //////Create Route////// done
 router.post('/', (req, res) => {
 	// Create a new photo, push a copy into the User's photos array
 	Users.findById(req.body.user, (err, foundUser) => {
@@ -78,6 +79,36 @@ router.delete('/:id', (req, res) => {
 	});
 });
 
+// //////Update Route//////
+// Update a photo - also update the user's photos list
+router.put('/:id', (req, res) => {
+	Photos.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPhoto) => {
+		// Find the user with that photo
+		User.findOne({'users._id': req.params.id}, (err, foundUser) => {
+			// Say there is a new user
+			if (foundUser._id.toString() !== req.body.userId) {
+				// Remove the article from the old author and then save it
+				foundUser.photos.id(req.params.id).remove();
+				foundUser.save((err, savedFoundUser) => {
+					// Find the new user and add the photo to their array
+					Users.findById(req.body.userId, (err, newUser) => {
+						newUser.photos.push(updatedPhoto);
+						newUser.save((err, savedFoundUser) => {
+							res.redirect('/photos');
+						});
+					});
+				});
+			} else {
+					// If the user is the same as it was previously
+					// find the article and remove it, req.params.id = photos id
+					foundUser.photos.id(req.params.id).remove();
+					foundUser.photos.push(updatedPhoto);
+					foundAuthor.save((err, data) => {
+						res.redirect('/articles');
+					});
+			};
+		});
+	});
+});
+
 module.exports = router;
-
-
