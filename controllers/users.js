@@ -41,7 +41,6 @@ router.put('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  
   	Users.create(req.body, (err, createdUsers) => {
   		if(err){
   			console.log(err)

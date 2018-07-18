@@ -24,8 +24,8 @@ router.get('/:id', (req, res)=>{
   Photos.findById(req.params.id, (err, foundPhotos)=>{
     Users.findOne({'photos._id': req.params.id}, (err, foundUsers) =>{
 
-       res.render('photos/show.ejs', {
-          photos: foundPhotos,
+      res.render('photos/show.ejs', {
+        photos: foundPhotos,
           users: foundUsers
       });
     });
@@ -38,12 +38,12 @@ router.get('/:id/edit', (req, res) => {
 
     Users.find({}, (err, allUsers) => {
 
-      Users.findOne({'photos._id': req.params.id}, (err, foundArticleUsers) => {
+      Users.findOne({'photos._id': req.params.id}, (err, foundPhotosUser) => {
 
             res.render('photos/edit.ejs', {
               photos: foundPhotos,
-              users: allUsers,
-              photosUser: foundPhotosUser
+                users: allUsers,
+                  photosUser: foundPhotosUser
         });
       });
     });
@@ -52,12 +52,13 @@ router.get('/:id/edit', (req, res) => {
 
 
 router.post('/', (req, res)=>{
-  Users.findById(req.body.usersId, (err, foundUser) => {
-
+  Users.findById(req.body.userId, (err, foundUser) => {
+            console.log(foundUser, " This is foundUser")
     Photos.create(req.body, (err, createdPhotos)=>{
+            console.log(createdPhotos, " This is createdPhotos")
       foundUser.photos.push(createdPhotos);
-      foundUser.save((err, data) => {
-        res.redirect('/photos');
+        foundUser.save((err, data) => {
+          res.redirect('/photos');
       });
     });
   });
@@ -69,8 +70,8 @@ router.delete('/:id', (req, res)=>{
     Users.findOne({'photos._id': req.params.id}, (err, foundUser) => {
 
       foundUser.photos.id(req.params.id).remove();
-      foundUser.save((err, data) => {
-        res.redirect('/photos');
+        foundUser.save((err, data) => {
+          res.redirect('/photos');
       });
     });
   });
@@ -79,14 +80,17 @@ router.delete('/:id', (req, res)=>{
 router.put('/:id', (req, res)=>{
   Photos.findByIdAndUpdate(req.params.id, req.body, {new: true},(err, updatedPhotos)=>{
 
-    User.findOne({'photos._id': req.params.id}, (err, foundUser) => {
-
+    Users.findOne({'photos._id': req.params.id}, (err, foundUser) => {
+                    console.log(err, " This is the foundUser")
       if(foundUser._id.toString() !== req.body.userId){
          foundUser.photos.id(req.params.id).remove();
-         foundUser.save((err, savedFoundUser) => {
+          foundUser.save((err, savedFoundUser) => {
+                    console.log(err, " This is the savedFoundUser")
             Photos.findById(req.body.userId, (err, newUser) => {
+                    console.log(err, " This is the newUser")
               newUser.photos.push(updatedPhotos);
-              newUser.save((err, savedFoundUser) => {
+                newUser.save((err, savedFoundUser) => {
+                    console.log(err, " This is the savedFoundUser part2")
                  res.redirect('/photos');
               })
             })
@@ -94,9 +98,10 @@ router.put('/:id', (req, res)=>{
 
       } else {
           foundUser.photos.id(req.params.id).remove();
-          foundUser.photos.push(updatedPhotos);
-          foundUser.save((err, data) => {
-              res.redirect('/photos');
+            foundUser.photos.push(updatedPhotos);
+              foundUser.save((err, data) => {
+                    console.log(err, " This is data in the else part")
+                res.redirect('/photos');
             });
       }
     });

@@ -24,7 +24,7 @@
         <select name="userId">
           <% for(let i = 0; i < users.length; i++){ %>
             <option value="<%=users[i].id%>"
-              <% if(users[i]._id.toString() === photoUsers._id.toString()){%>
+              <% if(users[i]._id.toString() === photosUser._id.toString()){%>
                 selected
               <% }%>
               > <%=users[i].name%></option>
@@ -33,7 +33,7 @@
 
 
         <input type="text" name="title" value="<%=photos.title%>"/><br/>
-        <textarea name="body"><%=photos.body%></textarea><br/>
+        <input type="text" name="url" placeholder="enter url"/><br/>
         <input type="submit" value="Update Photos"/>
       </form>
     </main>
