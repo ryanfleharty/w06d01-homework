@@ -54,12 +54,11 @@ router.put('/:id', (req, res) => {
 });
 
 // //////Destroy Route//////
-
-
-
-
-
-
-
+router.delete('/:id', (req, res) => {
+	Photos.findByIdAndRemove(req.params.id, (err, deletedPhoto) => {
+		console.log(deletedPhoto, ' this is deletedPhoto');
+		res.redirect('/photos');
+	});
+});
 
 module.exports = router;
