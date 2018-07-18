@@ -4,7 +4,7 @@
 	<title></title>
 </head>
 <body>
-	<h1>Edit <%=user.name %></h1>
+	<h1>Edit <%=users.name %></h1>
 	<header></header>
 		<nav>
 			<ul>
@@ -16,9 +16,9 @@
 
 	<main>
 		<h2>Update User</h2>
-		<form action="/users/<%=user.id%>?_method=PUT" method="POST">
-			<input type="text" name="name" value="<%=user.name%>"><br/>
-			<input type="text" name="password" value="<%=user.password%>">
+		<form action="/users/<%=users.id%>?_method=PUT" method="POST">
+			<input type="text" name="name" value="<%=users.name%>"><br/>
+			<input type="text" name="password" value="<%=users.password%>">
 			<button type="submit">Change</button>
 		</form>
 	</main>

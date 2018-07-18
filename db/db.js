@@ -4,15 +4,15 @@ const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/photoSite");
 
 mongoose.connection.on("connected", () => {
-	console.log("Mongoose is connected")
+	console.log("DB Shit be runnin")
 });
 
 mongoose.connection.on("error", () => {
-	console.log("Mongoose has failed to connect")
+	console.log("DB Shit not be runnin")
 });
 
 mongoose.connection.on("disconnected", () => {
-	console.log("Mongoose is disconnected")
+	console.log("DB Shit be done")
 });
 
 

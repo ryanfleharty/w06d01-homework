@@ -1,9 +1,21 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const Photos = require('./photos');
 
-const userSchema = new mongoose.Schema({
-	username: {type: String, required: true, unique: true},
-	password: String
+const usersSchema = mongoose.Schema({
+  name: String,
+  password: String,
+  photos: [Photos.schema]
 });
 
+module.exports = mongoose.model('Users', usersSchema);
 
-module.exports = mongoose.model("Users", userSchema);
+
+
+
+
+
+
+
+
+
+
