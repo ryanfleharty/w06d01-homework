@@ -8,7 +8,11 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			//User's photos will go here, eventually
+			<ul>
+				<% for (let i = 0; i < user.photos.length; i++) { %>
+				<li><a href="/photos/<%=user.photos[i].id%>"><img src="<%=user.photos[i].img%>"></a></li>
+				<% } %>
+			</ul>
 		</div>
 	</div>
 	<div class="row">
