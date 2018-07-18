@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Gallery</title>
+</head>
+<body>
+	<header>
+		<h1><%=user.name%></h1>
+		<nav>
+			<a href="/">Home</a>
+		</nav>
+	</header>
+	<main>
+		<section>
+			<%=user.biography%>
+		</section>
+		<section>
+			<a href="/posts/new">Add a new photo</a>
+		</section>
+		<section>
+			<a href="/users/<%=user.id%>/edit">Edit your profile</a>
+			<form method="POST" action="/users/<%=user.id%>?_method=DELETE">
+				<button type="submit" value="submit"></button>
+			</form>		
+		</section>
+	</main>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<h1>Edit your user info</h1>
+			<nav>
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<form action="/users/<%=user.id%>?_method=PUT" method="post">
+				Name: <input type="text" name="name" value="<%=user.name%>">
+				Password: <input type="password" name="password"><br/>
+				Biography: <textarea name="biography" value="<%=user.biography%>"></textarea><br/>
+				<input type="submit" value="Submit Profile"/>
+			</form>
+		</main>
+	</body>
+</html>
