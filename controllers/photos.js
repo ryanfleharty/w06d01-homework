@@ -17,10 +17,17 @@ router.get('/', (req, res) =>{
 
 // //////New Route//////
 router.get('/new', (req, res) => {
-	res.render('/photos/new.ejs');
+	res.render('photos/new.ejs');
 });
 
 // //////Create Route//////
+router.post('/', (req, res) => {
+	Photos.create(req.body, (err, createdPhoto) => {
+		console.log(createdPhoto, ' this is the createdPhoto');
+		res.redirect('/photos');
+	});
+});
+
 // //////Show Route//////
 // //////Edit Route//////
 // //////Update Route//////
