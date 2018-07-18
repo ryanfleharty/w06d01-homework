@@ -30,8 +30,10 @@ router.get('/new', (req, res) => {
 // show the individual photo, list User name, show description
 router.get('/:id', (req, res) => {
 	Photos.findById(req.params.id, (err, foundPhoto) => {
+		console.log(foundPhoto, ' this is foundPhoto');
 		// Find the user of the photo
-		Users.findOne({'photos._id': req.param.id}, (err, foundUser) => {
+		Users.findOne({'photos._id': req.params.id}, (err, foundUser) => {
+			console.log(foundUser, ' this is foundUser');
 			res.render('photos/show.ejs', {
 				photo: foundPhoto,
 				user: foundUser
@@ -60,9 +62,12 @@ router.get('/:id/edit', (req, res) => {
 // //////Create Route////// done
 router.post('/', (req, res) => {
 	// Create a new photo, push a copy into the User's photos array
-	Users.findById(req.body.user, (err, foundUser) => {
+	Users.findById(req.body.userId, (err, foundUser) => {
+		console.log(foundUser, ' this is foundUser at CREATE route');
 		// foundUser is the document, with user's photos array
 		Photos.create(req.body, (err, createdPhoto) => {
+			console.log(err, ' this is error at CREATE route');
+			console.log(createdPhoto, ' this is createdPhoto at CREATE route');
 			foundUser.photos.push(createdPhoto);
 			foundUser.save((err, data) => {
 				res.redirect('/photos');
@@ -83,8 +88,10 @@ router.delete('/:id', (req, res) => {
 // Update a photo - also update the user's photos list
 router.put('/:id', (req, res) => {
 	Photos.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPhoto) => {
+		console.log(updatedPhoto, ' this is updatedPhoto at UPDATE route');
 		// Find the user with that photo
-		User.findOne({'users._id': req.params.id}, (err, foundUser) => {
+		Users.findOne({'photos._id': req.params.id}, (err, foundUser) => {
+
 			// Say there is a new user
 			if (foundUser._id.toString() !== req.body.userId) {
 				// Remove the article from the old author and then save it

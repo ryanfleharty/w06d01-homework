@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<form method="POST" action="/photos">
-				User: <select name="user">
+				User: <select name="userId">
 					<% for (let i = 0; i < users.length; i++) { %>
 						<option value="<%=users[i]._id%>"><%=users[i].username%></option>
 					<% } %>
