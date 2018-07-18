@@ -76,15 +76,23 @@ router.post('/', (req, res) => {
 	});
 });
 
-// //////Destroy Route//////
+// //////Destroy Route////// done
 router.delete('/:id', (req, res) => {
 	Photos.findByIdAndRemove(req.params.id, (err, deletedPhoto) => {
-		console.log(deletedPhoto, ' this is deletedPhoto');
-		res.redirect('/photos');
+		console.log(deletedPhoto, ' this is deletedPhoto at DESTROY route');
+		// Find the user with that photo
+		Users.findOne({'photos._id': req.params.id}, (err, foundUser) => {
+			console.log(foundUser, ' this is foundUser at DESTROY route');
+				// Find the photo in the user's photos array and remove it
+				foundUser.photos.id(req.params.id).remove();
+				foundUser.save((err, data) => {
+					res.redirect('/photos');
+				});
+		});
 	});
 });
 
-// //////Update Route//////
+// //////Update Route////// done
 // Update a photo - also update the user's photos list
 router.put('/:id', (req, res) => {
 	Photos.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPhoto) => {
