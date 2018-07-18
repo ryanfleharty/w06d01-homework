@@ -9,6 +9,11 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
+			<button><a href="/photos/new">Create a New Post!</a></button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
 			<% for (let i = 0; i < photos.length; i++) { %>
 			<li><a href="/photos/<%= photos[i].id %>"><img src="<%= photos[i].img%>"></a></li>
 			<% } %>
