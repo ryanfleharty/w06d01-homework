@@ -10,19 +10,18 @@
 					</div>
 					<div class="col-sm">
 						<main>
-							<h1> Photo Details Page</h1>
-							<section>
-								<%= photo.title %> <br/>
-								<%= photo.url %> <br/>
-								<%= user.userName %> <br/>
-							</section>
-							
-							<section>
-								<-- Set Up delete form here ->
+							<h2>Gallery - Photo Details</h2>
+								<div class="card justify-content-center" style="width: 18rem;">
+									<img class="card-img-top" src="<%= photo.url %>" alt="Card image cap">
+									<div class="card-body justify-content-center">
+										<h5 class="card-title">	<small>Title: </small><%= photo.title %>	</h5>
+										<h5 class="card-title">	<small>Photographer: </small><%= user.userName %>	</h5>
+									</div>
+									<a href="/photos/<%= photo.id %>/edit"><button>Edit</button></a>
 									<form action="/photos/<%=photo.id%>?_method=DELETE" method="POST">
-										<input type="submit" value="Delete Article" />
+										<input type="submit" value="Delete Photo" />
 									</form>
-							</section>
+								</div>
 						</main>
 					</div>
 					<div class="col-sm">

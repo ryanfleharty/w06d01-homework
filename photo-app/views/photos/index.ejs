@@ -5,21 +5,18 @@
 	<body>
 		<div class="container">
 			<% include ../partials/_navbar %>
-			<div class="row">
-			<div class="col-sm">
-			</div>
-			<div class="col-sm">
+			<div class="row justify-content-center">
 				<main>
-					<h2>List of Photos</h2>
-					<div class="list-group">
+					<h2>Gallery</h2>
 						<% for (let i = 0; i < photos.length; i++) { %>
-							<a href="/photos/<%= photos[i].id %>" class="list-group-item list-group-item-action"><small>Title: </small><%= photos[i].title %> | <small>Url: </small> <%= photos[i].url %></a>
-							<a href="/photos/<%= photos[i].id %>/edit"><button>Edit</button></a>
+							<div class="card" style="width: 18rem;">
+								<img class="card-img-top" src="<%= photos[i].url %>" alt="Card image cap">
+								<div class="card-body">
+									<h5 class="card-title"><a href="/photos/<%= photos[i].id %>"><%= photos[i].title %> </a></h5>
+								</div>
+							</div>
 						<% } %>
-					</div>
 				</main>
-			</div>
-			<div class="col-sm">
 			</div>
 		</div>
 			<% include ../partials/_js_bs %>

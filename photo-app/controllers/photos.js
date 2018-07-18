@@ -52,6 +52,8 @@ router.get('/:id/edit', (req, res) => {
 router.get('/:id', (req, res) => {
   Photo.findById(req.params.id, (err, foundPhoto) => {
     User.findOne({ 'photos._id': req.params.id }, (err, foundUser) => { // user that has the photo
+      console.log(foundUser);
+      
       res.render('photos/show.ejs', {
         photo: foundPhoto,
         user: foundUser
@@ -116,7 +118,12 @@ router.delete('/:id', (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/photos');
+      User.findOne({'photos._id': req.params.id}, (err, foundUser) => {
+        foundUser.photos.id(req.params.id).remove();
+        foundUser.save((err, data) => {
+          res.redirect('/photos');
+        })
+      })
     }
   })
 })
