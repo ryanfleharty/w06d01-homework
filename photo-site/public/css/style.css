@@ -1,0 +1,60 @@
+.titleLittle {
+	font-family: 'Julius Sans One', sans-serif;
+	font-style: italic;
+	font-size: 14px;
+	margin-bottom: 0;
+}
+.title {
+	font-family: 'Bungee Inline', cursive;
+	font-size: 60px;
+	color: orange;
+}
+.subtitle {
+	font-family: 'Julius Sans One', sans-serif;
+	font-size: 40px;
+}
+
+h4, form {
+	font-family: 'Economica', sans-serif;
+	font-size: 20px;
+	color: sienna;
+}
+.userIndex {
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+}
+
+ul, li {
+	list-style-type: none;
+}
+
+.foot {
+	background-color: lightgrey;
+}
+
+nav, footer, li {
+	font-family: 'Julius Sans One', sans-serif;
+	font-size: 20px;
+}
+
+.copyright {
+	font-family: 'Julius Sans One', sans-serif;
+	font-size: 12px;
+}
+
+.showPic {
+	max-height: 300px;
+	display: block;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+.showPicThumbnail {
+	max-height: 100px;
+	display: block;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}

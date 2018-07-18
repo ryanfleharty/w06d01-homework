@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Economica|Julius+Sans+One" rel="stylesheet">
+	<title>
+		
+	</title>
+</head>
+<body class="container">
+	<header></br>
+		<h1 class="nav justify-content-center title">Go-Photo-Yourself</h1>
+		<h1 class="nav justify-content-center subtitle"><%=user.name%>'s Profile & Photo Page</h1></br>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		    <div class="navbar-nav">
+		      <a class="nav-item nav-link active" href="/users">Home <span class="sr-only">(current)</span></a>
+		      <a class="nav-item nav-link" href="/users/<%=user.id%>/edit">Edit</a>
+		    </div>
+		  </div>
+		</nav></br>
+		<h4>Photos Uploaded by <%=user.name%>:</h4></br>
+	</header>
+	<main>
+		<section>
+	    	<ul>
+	        	<% for (let i = 0; i < user.photos.length; i++){ %>
+	        		<div class="userIndex">
+		        		<img class="showPicThumbnail" src="<%=user.photos[i].img%>">
+		           		<li><a href="/photos/<%=user.photos[i].id%>"><%=user.photos[i].name%></a></li>
+		           	</div>	
+	        	<%} %>
+	      	</ul>
+		</section>
+	</main>
+	<footer>
+		<ul class="navbar-expand-lg navbar-light bg-light nav justify-content-center foot">
+			<li class="nav-item">
+		    	<a class="nav-link active copyright">Copyright 2018</a>
+		  	</li>
+		</ul></br>
+	</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
