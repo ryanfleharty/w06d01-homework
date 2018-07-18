@@ -27,10 +27,15 @@ router.get('/new', (req, res) => {
 });
 
 // //////Show Route//////
+// show the individual photo, list User name, show description
 router.get('/:id', (req, res) => {
 	Photos.findById(req.params.id, (err, foundPhoto) => {
-		res.render('photos/show.ejs', {
-			photo: foundPhoto
+		// Find the user of the photo
+		Users.findOne({'photos._id': req.param.id}, (err, foundUser) => {
+			res.render('photos/show.ejs', {
+				photo: foundPhoto,
+				user: foundUser
+			});
 		});
 	});
 });
