@@ -4,23 +4,22 @@
 	<title>User Gallery</title>
 </head>
 <body>
+	<h1><%=user.name%></h1>
 	<header>
-		<h1><%=user.name%></h1>
 		<nav>
 			<a href="/">Home</a>
 		</nav>
 	</header>
 	<main>
 		<section>
-			<%=user.biography%>
+			<%for (let i = 0; i < user.posts.length; i++) {%>
+			<img src="<%=user.posts[i].url%>">
+			<%}%>
 		</section>
 		<section>
-			<a href="/posts/new">Add a new photo</a>
-		</section>
-		<section>
-			<a href="/users/<%=user.id%>/edit">Edit your profile</a>
-			<form method="POST" action="/users/<%=user.id%>?_method=DELETE">
-				<button type="submit" value="submit"></button>
+			<a href="/posts/<%=post_.id%>/edit">Edit Photo</a>
+			<form method="POST" action="/posts/<%=post_.id%>?_method=DELETE">
+				<button type="submit" value="Delete Post">Delete</button>
 			</form>		
 		</section>
 	</main>

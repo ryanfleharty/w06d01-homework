@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>User's HomePage</title>
+	<title>Gallery</title>
 </head>
 <body>
 	<header>
-		<h1>User's HomePage</h1>
+		<h1>Gallery</h1>
 		<nav>
 			<a href="/">Home</a>
+			<a href="/users">User Profiles</a>
 		</nav>
 	</header>
 	<ul>
 		<% for (let i = 0; i < posts.length; i++) { %>
 		<li><%=posts[i].title%></li>
-		<img src="posts[i].url">
+		<a href="posts/<%=posts[i].id%>"><img src="<%=posts[i].url%>"></a>
 		<%}%>
 	</ul>
 

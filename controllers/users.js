@@ -2,67 +2,61 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/users");
 const Post = require("../models/posts");
-router.get("/", (req, res) => {
-	User.find({}, (err, allUsers) => {
-		if(err) {
-			res.send(err)
-		} else {
-			res.render("users/index.ejs", {users: allUsers});
-		}
-	})
+router.get("/", async (req, res) => {
+	try {
+		const allUsers = await User.find({});
+		res.render("users/index.ejs", {users: allUsers});
+	} catch (err) {
+		res.send(err);
+	}
 });
-router.get("/new", (req, res) => {
-	User.find({}, (err, foundUser) => {
+router.get("/new", async (req, res) => {
+	try {
+		const foundUser = await User.find({});
 		res.render("users/new.ejs", {users: foundUser});
-	})
+	} catch (err) {
+		res.send(err);
+	}
 });
-router.get("/:id", (req, res) => {
-	User.findById(req.params.id, (err, foundUser) => {
-		if (err) {
-			console.log(err);
-		} else {
-			res.render("users/show.ejs", {user: foundUser});
-		}
-	})
+router.get("/:id", async (req, res) => {
+	try {
+		const foundUser = await User.findById(req.params.id);
+		res.render("users/show.ejs", {user: foundUser});
+	} catch (err) {
+		res.send(err)
+	}
 });
 router.get("/:id/edit", (req, res) => {
-	User.findById(req.params.id, (err, foundUser) => {
-		if (err) {
-			console.log(err)
-		} else {
-			res.render("users/edit.ejs", {user: foundUser})
-		}
-
-	})
+	try {
+		const foundUser = User.findById(req.params.id);
+		res.render("users/edit.ejs", {users: foundUser});
+	} catch (err) {
+		res.send(err)
+	}
 });
-router.put("/:id", (req, res) => {
-	User.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedUser) => {
-			if(err) {
-				res.send(err)
-			} else {
-				res.redirect("/users");
-		}
+router.put("/:id", async (req, res) => {
+	try {
+		const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {new: true});
+		res.redirect("/users");
+	} catch (err) {
+		res.send(err);
+	}
 });
-
-	})
-router.post("/", (req, res) => {
-	console.log(req.body);
-	User.create(req.body, (err, createdUser) => {
-		if(err) {
-			console.log(err)
-		} else {
-			res.redirect("/users");
-		}
-	})
+router.post("/", async (req, res) => {
+	try {
+		const createdUser = await User.create(req.body);
+		res.redirect("/users");
+	} catch (err) {
+		res.send(err);
+	}
 });
-router.delete("/:id", (req, res) => {
-	User.findByIdAndRemove(req.params.id, (err, deletedUser) => {
-		if (err) {
-			console.log(err);
-		} else {
-			res.redirect("/users")
-		}
-	})
+router.delete("/:id", async (req, res) => {
+	try {
+		const deletedUser = await User.findByIdAndRemove(req.params.id);
+		res.redirect("/users");
+	} catch (err) {
+		res.send(err);
+	}
 });
 
 
