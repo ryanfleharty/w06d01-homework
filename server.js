@@ -27,7 +27,15 @@ const authController = require('./controllers/auth');
 app.use('/auth', authController);
 
 app.get('/', (req, res) => {
-	res.render('index.ejs');
+	console.log(req.session, ' this is req.session in index');
+	if (req.session.loggedIn === true) {
+		res.render('index.ejs', {
+			username: req.session.username
+		});
+	} else {
+		req.session.message = 'You must be logged in to access the site';
+		res.redirect('/auth');
+	};
 });
 
 app.listen(3000, () => {
