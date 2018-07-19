@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<header>
+		<h1>The Show Page Bitches!</h1>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/users">Users Index</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section>
+			<h2>User Info</h2>
+			<ul>
+				<li>Name: <%users.name%></li>
+			</ul>
+		</section>
+		<section>
+			<li>Password: <%users.password%></li>
+		</section>
+		<section>
+			<form action="/users/<%=users.id%>?_method=DELETE" method="POST">
+				<button type="submit">Delete user</button>
+			</form>
+		</section>
+	</main>
+</body>
+</html>
