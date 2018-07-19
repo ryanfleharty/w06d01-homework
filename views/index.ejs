@@ -1,0 +1,29 @@
+<% include partials/_header %>
+	
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<header>
+				<h1>Welcome to Photo Drop</h1><br>
+				<h2><%=username%></h2>
+			</header>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<a class="btn btn-primary mt-1 px-2" href="/users" role="button">Photographers</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<a class="btn btn-primary mt-1 px-2" href="/photos" role="button">Photos</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<a class="btn btn-primary mt-1 px-2" href="/auth/logout">Logout</a>
+		</div>
+	</div>
+</div>
+
+<% include partials/_footer %>

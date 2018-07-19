@@ -1,0 +1,30 @@
+<% include ../partials/_header %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Photo Drop</h1>
+			<h2>A place for photographers and enthusiasts to share and colaborate</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<a class="btn btn-primary mt-1 px-2" href="/photos/new" role="button">Create a New Post!</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="card" style="width: 18rem;">
+				<% for (let i = 0; i < photos.length; i++) { %>
+  			<img class="card-img-top" src="<%= photos[i].img%>" alt="Card image cap">
+  			<div class="card-body">
+    			<p class="card-text"><%= photos[i].about %></p>
+    			<a href="/photos/<%= photos[i]._id %>" class="btn btn-primary">More Info</a>
+  			</div>
+  			<% } %>
+			</div>
+		</div>
+	</div>
+
+<% include ../partials/_footer %>

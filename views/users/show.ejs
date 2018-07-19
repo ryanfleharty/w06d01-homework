@@ -1,0 +1,30 @@
+<% include ../partials/_header %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1><%= user.username %></h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<ul>
+				<% for (let i = 0; i < user.photos.length; i++) { %>
+				<li><a href="/photos/<%=user.photos[i].id%>"><img src="<%=user.photos[i].img%>"></a></li>
+				<% } %>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<a class="btn btn-primary mt-1 px-2" href="/users/<%= user.id %>/edit" role="button">Edit My Info</a>
+		</div>
+		<div class="col-xs-6">
+			<form method="POST" action="/users/<%= user.id %>?_method=DELETE">
+				<input type="submit" value="Delete My Info">
+			</form>
+		</div>
+	</div>
+</div>
+	
+<% include ../partials/_footer %>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>Login to Photo Drop</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<form action="/auth/login" method="POST">
+				Username: <input type="text" name="username" placeholder="username"><br>
+				Password: <input type="text" name="password" placeholder="password"><br>
+				<button class="btn btn-primary" type="submit">Login</button>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h4><%= message %></h4>
+		</div>
+	</div>
+</body>
+</html>

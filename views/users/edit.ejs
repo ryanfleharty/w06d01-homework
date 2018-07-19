@@ -1,0 +1,32 @@
+<% include ../partials/_header %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Edit Your Info</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h4><%= user.username %>'s Info</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<form method="POST" action="/users/<%= user. id %>?_method=PUT">
+				<input type="text" name="username" value="<%= user.username %>"><br>
+				<input type="text" name="password"><br>
+				<input type="submit" value="Update My Info">
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<form method="POST" action="/users/<%= user.id %>?_method=DELETE">
+				<input type="submit" value="Delete My Info">
+			</form>
+		</div>
+	</div>
+</div>	
+
+<% include ../partials/_footer %>
