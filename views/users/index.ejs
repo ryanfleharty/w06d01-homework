@@ -1,0 +1,25 @@
+<% include ../partials/_header %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Meet the Talented Photographers!</h1>
+		</div>
+	</div>
+		<div class="row">
+		<div class="col-xs-12">
+			<a class="btn btn-primary mt-1 px-2" href="/users/new" role="button">Add Your Info</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<ul>
+				<% for(let i = 0; i < users.length; i++) { %>
+					<li><a href="/users/<%= users[i].id%>"><%= users[i].username %></a></li>
+				<% } %>
+			</ul>
+		</div>
+	</div>
+</div>	
+
+<% include ../partials/_footer %>

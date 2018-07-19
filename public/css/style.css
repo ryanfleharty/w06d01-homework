@@ -1,0 +1,12 @@
+nav {
+	background-color: rgb(0, 208, 129);
+	border-color: rgb(0, 208, 129);
+};
+.px-2 {
+	/*both left and right*/
+	padding-left: ($spacer * .5) !important;
+  padding-right: ($spacer * .5) !important;
+};
+.mt-1 {
+	margin-top: ($spacer * .25) !important;
+};

@@ -1,0 +1,25 @@
+<% include ../partials/_header %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Create New Post</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<form method="POST" action="/photos">
+				User: <select name="userId">
+					<% for (let i = 0; i < users.length; i++) { %>
+						<option value="<%=users[i]._id%>"><%=users[i].username%></option>
+					<% } %>
+				</select>
+				Image URL: <input type="text" name="img">
+				About Photo: <input type="text" name="about">
+				<input type="submit" value="Create Post">
+			</form>
+		</div>
+	</div>
+</div>	
+
+<% include ../partials/_footer %>

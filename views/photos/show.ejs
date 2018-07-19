@@ -1,0 +1,32 @@
+<% include ../partials/_header %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Posted by <%=user.username%></h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="card" style="width: 18rem;">
+  			<img class="card-img-top" src="<%= photo.img %>" alt="Card image cap">
+  			<div class="card-body">
+    			<p class="card-text"><%= photo.about %></p>
+  			</div>
+			</div>
+		</div>
+	</div>
+		
+	<div class="row">
+		<div class="col-xs-6">
+			<a class="btn btn-primary mt-1 px-2" href="/photos/<%= photo.id %>/edit" role="button">Edit My Post</a>
+		</div>
+		<div class="col-xs-6">
+			<form method="POST" action="/photos/<%= photo.id %>?_method=DELETE">
+				<input class="btn btn-primary" type="submit" value="Delete My Post">
+			</form>
+		</div>
+	</div>
+</div>	
+
+<% include ../partials/_footer %>
