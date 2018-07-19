@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gallery</title>
+</head>
+<body>
+	<header>
+		<h1>Gallery</h1>
+		<nav>
+			<a href="/">Home</a>
+			<a href="/users">User Profiles</a>
+		</nav>
+	</header>
+	<ul>
+		<% for (let i = 0; i < posts.length; i++) { %>
+		<li><%=posts[i].title%></li>
+		<a href="posts/<%=posts[i].id%>"><img src="<%=posts[i].url%>"></a>
+		<%}%>
+	</ul>
+
+</body>
+</html>
