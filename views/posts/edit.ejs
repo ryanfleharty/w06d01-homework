@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <h1>Edit your post info</h1>
+      <nav>
+        <a href="/">Home</a>
+      </nav>
+    </header>
+    <main>
+      <form action="/posts/<%=post._id%>?_method=PUT" method="post">
+        <select name="userId">
+          <% for(let i = 0; i < users.length; i++){ %>
+            <option value="<%=users[i].id%>"
+              <% if(users[i]._id.toString() === postUser._id.toString()){%>
+                selected
+              <% }%>
+              > <%=users[i].name%></option>
+          <% } %>
+        </select>
+
+
+        <input type="text" name="title" value="<%=post.title%>"/><br/>
+        <input type="text" name="url"><br/>
+        <input type="submit" value="Submit"/>
+      </form>
+    </main>
+  </body>
+</html>

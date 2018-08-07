@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <section>
+      <form action="/posts" method="POST">
+        <select name="userId">
+          <% for (let i = 0; i < users.length; i++) { %>
+            <option value="<%=users[i].id%>"><%=users[i].name%></option>
+            <%}%>
+        <h3>Photo Title</h3>
+        <input type="text" name="title">
+        <h3>Photo URL</h3>
+        <input type="text" name="url">
+        <button type="submit">Submit Photo</button>
+      </form>
+    </section>
+</body>
+</html>
